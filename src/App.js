@@ -1,30 +1,22 @@
-import './App.css';
+import "./App.css";
+import React from "react";
+/* import AdvertsPage from "./components/adverts/AdvertsPage";*/
+import Button from "./components/shared/Button";
+import LoginPage from "./components/auth/LoginPage";
 
-import React from 'react';
-
-const adverts = [
-    {
-        content: 
-        "Se vende horno",
-        userId: 1,
-        id: 1,
-    },{
-        content: 
-        "Se busca horno",
-        userId: 2,
-        id: 2,
-    }
-];
-
-function App () {
-return (<div className='App'>
-    <ul>
-        {
-            adverts.map(advert => (<li key={advert.id}>{advert.content}</li>
-            ))}
-    </ul>
-</div>
-)};
+function App() {
+  return (
+    <div className="App">
+      {/* <AdvertsPage /> */}
+      <LoginPage />
+      { /* <Button variant="primary" onClick={(event) => console.log(event)}>
+        Click
+      </Button>
+      <Button variant="secondary" onClick={(event) => console.log(event)}>
+        Click
+  </Button> */}
+    </div>
+  );
+}
 
 export default App;
-
