@@ -1,11 +1,19 @@
+import { logout } from '../auth/service';
 import Button from '../shared/Button';
 
-
-const Header = () => {
+const Header = ({ isLogged, onLogout }) => {
+    const handleLogoutClick = async () => {
+        await logout();
+        onLogout();
+    }
   return (
     <header>
       <nav>
-        <Button variant="primary">Login</Button>
+        { isLogged ? (
+        <Button onClick={handleLogoutClick} variant="primary">Logout</Button>     
+        ) : ( 
+        <Button variant="secondary">Login</Button>
+    )}
       </nav>
     </header>
   );
