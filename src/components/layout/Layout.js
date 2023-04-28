@@ -1,16 +1,18 @@
 import Header from './Header'
 
-const Layout = ({ title, children }) => {
+const Layout = ({ title, children, ...rest}) => {
     return (
-      <div>
-        <Header />
+      <div>        
         <main>
           <h2>{title}</h2>
           {children}
         </main>
-        <footer>@ 2023 Keepcoding</footer>
+        <Header {...rest} />
+        <footer>@ 2023 Nodepop</footer>
       </div>
     );
   };
   
   export default Layout; 
+
+{ /*<li key={advert.id}>{advert.name} {advert.price}</li> */ }
