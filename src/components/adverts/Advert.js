@@ -1,11 +1,10 @@
 import React from 'react';
+import "./styles.css";
 
 function Advert (props) {    
-    console.log('props', props)
-   
     return (
         <li key={props.id}>
-            <div className="advert-container">
+            <div className="advert-card">
                 <span className="advert-name">Nombre: {props.name}</span>
                 <br></br>
                 <span className="advert-sale">{props.sale ? 'Venta' : 'Compra'}</span>
