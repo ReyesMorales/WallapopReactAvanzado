@@ -1,6 +1,7 @@
 import Layout from "../layout/Layout";
 import Button from "../shared/Button";
 import React, { useState, useEffect } from "react";
+import { createAdvert } from "./service";
 import './styles.css'
 
 const NewAdvertPage = (props) => {
@@ -21,9 +22,16 @@ const NewAdvertPage = (props) => {
     }
   }, [formData]);
 
-  const handleSubmit = (event) => {
+  
+  const handleSubmit = async event => {
     event.preventDefault();
-    console.log(formData);
+    try {
+      const response = await createAdvert(formData);
+      console.log("Advert created successfully:", response);
+      // redirigir a la página de detalle del anuncio
+    } catch (error) {
+      console.error("Error creating advert:", error);
+    }
   };
 
   const handleChange = (event) => {
@@ -55,7 +63,7 @@ const NewAdvertPage = (props) => {
     return (
       <Layout title="What do you need?" {...props}>
         <h1>New Advert Page</h1>
-        <form className="new-advert-form">
+        <form className="new-advert-form" onSubmit={handleSubmit}>
           <label>
             Nombre:
             <input type="text" name="name" onChange={handleChange} />
@@ -119,7 +127,7 @@ const NewAdvertPage = (props) => {
           </label>
         </form>
         <Button
-          type="submit"
+          type="button"
           name="create-advert-button"
           className="create-advert-button"
           onClick={handleSubmit}
