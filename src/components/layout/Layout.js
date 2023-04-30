@@ -9,7 +9,6 @@ const Layout = ({ title, children, ...rest}) => {
           {children}
         </main>
         <Header {...rest} />
-        <footer>@ 2023 Nodepop</footer>
       </div>
     );
   };
