@@ -75,14 +75,14 @@ body {
     padding: 10px;
   }
   
-  button {
+  /* button {
     background-color: #007bff;
     color: white;
     border: none;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-  }
+  } */
   
   .logout-button {
     position: absolute;
