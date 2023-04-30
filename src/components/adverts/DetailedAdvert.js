@@ -18,7 +18,6 @@ export const DetailedAdvert = () => {
       });
   }, [id]);
 
-  /* Aqui habría que añadir el endp */
   return (
     <Layout title="Advert Detail">
       <Advert
