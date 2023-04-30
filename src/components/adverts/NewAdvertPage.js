@@ -3,6 +3,7 @@ import Button from '../shared/Button';
 import React, { useState, useEffect } from 'react';
 import './styles.css';
 import { useNavigate } from 'react-router-dom';
+import { createAdvert } from './service';
 
 const NewAdvertPage = (props) => {
   const [formData, setFormData] = useState({
@@ -23,15 +24,14 @@ const NewAdvertPage = (props) => {
     }
   }, [formData]);
 
-  
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await createAdvert(formData);
-      console.log("Advert created successfully:", response);
+      console.log('Advert created successfully:', response);
       // redirigir a la página de detalle del anuncio
     } catch (error) {
-      console.error("Error creating advert:", error);
+      console.error('Error creating advert:', error);
     }
   };
 
