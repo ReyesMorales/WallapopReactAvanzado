@@ -1,18 +1,21 @@
-import { useState } from "react";
-import Button from "../shared/Button";
-import { login } from "./service";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '../shared/Button';
+import { login } from './service';
 
 function LoginPage({ onLogin }) {
+  const navigate = useNavigate();
+
   const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const [remember, setRemember] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await login(credentials);
+    await login(credentials, navigate, remember);
 
     onLogin();
   };
@@ -24,8 +27,6 @@ function LoginPage({ onLogin }) {
   const handleRememberChange = (event) => {
     setRemember(event.target.checked);
   };
-
-  console.log(credentials.email, credentials.password);
 
   return (
     <div>

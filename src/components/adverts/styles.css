@@ -115,3 +115,6 @@ body {
     margin-top: 20px;
   }
   
+.clickable-advert {
+    cursor: pointer;
+  }

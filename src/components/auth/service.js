@@ -1,18 +1,25 @@
-import client, { removeAuthorizationHeader, setAuthorizationHeader } from "../../api/client";
-import storage from "../../utils/storage";
+import client, {
+  removeAuthorizationHeader,
+  setAuthorizationHeader,
+} from '../../api/client';
+import storage from '../../utils/storage';
 
-export const login = credentials => {
-    return client
-    .post('/api/auth/login', credentials)
-    .then(({ accessToken }) => {
-        setAuthorizationHeader(accessToken);
-        storage.set('auth', accessToken);
-    });
+export const login = async (credentials, navigate, remember) => {
+  try {
+    const { accessToken } = await client.post('/api/auth/login', credentials);
+    setAuthorizationHeader(accessToken);
+    if (remember) {
+      storage.set('auth', accessToken);
+    }
+    navigate('/');
+  } catch (error) {
+    console.error(error);
+    throw new Error('Wrong credentials');
+  }
 };
 
-export const logout = () => {
-    return Promise.resolve().then(() => {
-        removeAuthorizationHeader();
-        storage.remove('auth');
-    });
+export const logout = async () => {
+  await Promise.resolve();
+  removeAuthorizationHeader();
+  storage.remove('auth');
 };

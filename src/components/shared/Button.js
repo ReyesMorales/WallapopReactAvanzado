@@ -1,16 +1,16 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const accentColor = "blue";
+const accentColor = 'blue';
 
 const Button = styled.button`
   cursor: pointer;
   background-color: ${(props) =>
-    props.variant === "primary" ? accentColor : "white"};
+    props.variant === 'primary' ? accentColor : 'white'};
   border-radius: 9999px;
-  border-styled: solid;
+  border-style: solid;
   border-width: 1px;
   border-color: ${accentColor};
-  color: ${(props) => (props.variant === "primary" ? "white" : accentColor)};
+  color: ${(props) => (props.variant === 'primary' ? 'white' : accentColor)};
   display: inline-flex;
   align-items: center;
   font: inherit;
@@ -23,7 +23,7 @@ const Button = styled.button`
 
   &:hover {
     background-color: ${(props) =>
-      props.variant === "primary" ? "lightblue" : "darkblue"};
+      props.variant === 'primary' ? 'lightblue' : 'darkblue'};
   }
 `;
 

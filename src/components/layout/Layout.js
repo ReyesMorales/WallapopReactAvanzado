@@ -1,5 +1,5 @@
-import Header from './Header'
-import '../adverts/styles.css'
+import Header from './Header';
+import '../adverts/styles.css';
 
 const Layout = ({ title, children, ...rest}) => {
     return (
@@ -15,3 +15,4 @@ const Layout = ({ title, children, ...rest}) => {
   
   export default Layout; 
 
+export default Layout;

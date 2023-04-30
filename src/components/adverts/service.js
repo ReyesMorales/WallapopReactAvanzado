@@ -1,6 +1,6 @@
-import client from "../../api/client";
+import client from '../../api/client';
 
-const advertsURL = "/api/v1/adverts";
+const advertsURL = '/api/v1/adverts';
 
 export const getLatestAdverts = () => {
   return client.get(advertsURL);
@@ -8,4 +8,8 @@ export const getLatestAdverts = () => {
 
 export const createAdvert = advert => {
   return client.post(advertsURL, advert, {});
+};
+
+export const getAdvertDetail = (advertId) => {
+  return client.get(`${advertsURL}/${advertId}`);
 };
