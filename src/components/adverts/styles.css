@@ -69,21 +69,6 @@ body {
     height: 100vh;
   }
   
-  footer {
-    text-align: center;
-    color: black;
-    padding: 10px;
-  }
-  
-  /* button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  } */
-  
   .logout-button {
     position: absolute;
     top: 10px;
