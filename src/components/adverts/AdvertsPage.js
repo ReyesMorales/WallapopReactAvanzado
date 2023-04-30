@@ -12,6 +12,8 @@ const AdvertsPage = (props) => {
     getLatestAdverts().then((adverts) => setAdverts(adverts));
   }, []);
 
+  console.log(adverts);
+
   return (
     <>
       <div className="header">

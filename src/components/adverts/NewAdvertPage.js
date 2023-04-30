@@ -1,6 +1,7 @@
 import Layout from "../layout/Layout";
 import Button from "../shared/Button";
 import React, { useState, useEffect } from "react";
+import './styles.css'
 
 const NewAdvertPage = (props) => {
   const [formData, setFormData] = useState({
@@ -119,7 +120,8 @@ const NewAdvertPage = (props) => {
         </form>
         <Button
           type="submit"
-          name="button"
+          name="create-advert-button"
+          className="create-advert-button"
           onClick={handleSubmit}
           variant="secondary"
           disabled={buttonDisabled}

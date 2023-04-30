@@ -1,4 +1,5 @@
 import Header from './Header'
+import '../adverts/styles.css'
 
 const Layout = ({ title, children, ...rest}) => {
     return (
@@ -15,4 +16,3 @@ const Layout = ({ title, children, ...rest}) => {
   
   export default Layout; 
 
-{ /*<li key={advert.id}>{advert.name} {advert.price}</li> */ }

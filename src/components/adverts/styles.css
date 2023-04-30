@@ -1,0 +1,132 @@
+body {
+    height: 100%;
+    margin: 0;
+  }
+
+  .header {
+    background-color: #282c34;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .adverts-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .advert-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+  }
+  
+  .advert-name {
+    font-weight: bold;
+  }
+  
+  .advert-sale {
+    color: #007bff;
+  }
+  
+  .advert-price {
+    font-size: 1.2rem;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  h2 {
+    margin-top: 20px; /* Añadido para separar el título del header */
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 10px;
+  }
+  
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  footer {
+    text-align: center;
+    color: black;
+    padding: 10px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .logout-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .create-advert-button {
+    margin-top: 20px;
+  }
+  
+  body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .new-advert-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+  }
+  
+  input[type="text"],
+  select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 300px;
+  }
+  
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  .create-advert-button {
+    margin-top: 20px;
+  }
+  
