@@ -35,7 +35,7 @@ const AdvertsPage = (props) => {
                 ))}
               </ul>
             ) : (
-              <Button className="secondary-button">Do something</Button>
+              <Button className="secondary-button">Publish your add</Button>
             )}
           </div>
         </Layout>
