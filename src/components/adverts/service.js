@@ -6,7 +6,7 @@ export const getLatestAdverts = () => {
   return client.get(advertsURL);
 };
 
-export const createAdvert = advert => {
+export const createAdvert = (advert) => {
   return client.post(advertsURL, advert, {});
 };
 
