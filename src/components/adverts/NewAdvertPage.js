@@ -29,7 +29,7 @@ const NewAdvertPage = (props) => {
     try {
       const response = await createAdvert(formData);
       console.log('Advert created successfully:', response);
-      // redirigir a la página de detalle del anuncio
+      navigate('/');
     } catch (error) {
       console.error('Error creating advert:', error);
     }
