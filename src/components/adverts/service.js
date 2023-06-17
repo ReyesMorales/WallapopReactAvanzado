@@ -13,3 +13,7 @@ export const createAdvert = (advert) => {
 export const getAdvertDetail = (advertId) => {
   return client.get(`${advertsURL}/${advertId}`);
 };
+
+export const deleteAdvert = (advertId) => {
+  return client.delete(`${advertsURL}/${advertId}`);
+}
