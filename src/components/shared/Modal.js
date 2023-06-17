@@ -30,6 +30,7 @@ const ModalTitle = styled.h2`
 
 const ModalMessage = styled.p`
   margin-bottom: 20px;
+  color: #666;
 `;
 
 const ModalButtons = styled.div`

@@ -7,7 +7,9 @@ export const getLatestAdverts = () => {
 };
 
 export const createAdvert = (advert) => {
-  return client.post(advertsURL, advert, {});
+  return client.post(advertsURL, advert, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
 };
 
 export const getAdvertDetail = (advertId) => {
@@ -16,4 +18,8 @@ export const getAdvertDetail = (advertId) => {
 
 export const deleteAdvert = (advertId) => {
   return client.delete(`${advertsURL}/${advertId}`);
+}
+
+export const getTags = () => {
+  return client.get(`${advertsURL}/tags`);
 }

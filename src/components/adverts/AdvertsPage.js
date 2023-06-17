@@ -12,15 +12,23 @@ const AdvertsPage = (props) => {
   const [adverts, setAdverts] = useState([]);
   const [selectedOption, setSelectedOption] = useState('no-filtro');
   const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(1000);
+  const [maxPrice, setMaxPrice] = useState(undefined);
+
+  const [itemMaxPrice, setItemMaxPrice] = useState(0);
+
 
   const navigate = useNavigate();
 
   useEffect(() => {
     getLatestAdverts().then((adverts) => {
       setAdverts(adverts);
+
+      const maxPrice = Math.max(...adverts.map((advert) => advert.price));
+      setItemMaxPrice(maxPrice);
+      setMaxPrice(maxPrice);
     });
   }, []);
+
 
   const navigateToNewAdvert = () => {
     navigate('adverts/new');
@@ -44,7 +52,9 @@ const AdvertsPage = (props) => {
               setMinPrice={setMinPrice}
               maxPrice={maxPrice}
               setMaxPrice={setMaxPrice}
+              itemMaxPrice={itemMaxPrice}
             />
+
             <ul>
               {adverts
                 ?.filter((advert) => {
@@ -75,6 +85,7 @@ const AdvertsPage = (props) => {
                         sale={advert.sale}
                         price={advert.price}
                         tags={advert.tags}
+                        photo={advert.photo}
                       />
                     </li>
                   );

@@ -6,13 +6,21 @@ import Layout from '../layout/Layout';
 import Button from '../shared/Button';
 import Modal from '../shared/Modal';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
+const StyledAdvertPhoto = styled.img`
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  margin: 0 auto;
+  display: block;
+`;
 
 export const DetailedAdvert = () => {
   const { id } = useParams();
   const [advert, setAdvert] = useState({});
   const [showModal, setShowModal] = useState(false);
-
 
   const navigate = useNavigate();
 
@@ -41,8 +49,11 @@ export const DetailedAdvert = () => {
         price={advert.price}
         tags={advert.tags}
       />
+      {advert.photo && (
+        <StyledAdvertPhoto src={advert.photo} alt="Advert Photo" />
+      )}
       <Button onClick={() => setShowModal(true)}>Delete</Button>
-      <Button onClick={() => {navigate('/')}}>Back</Button>
+      <Button onClick={() => navigate('/')}>Back</Button>
       {showModal && (
         <Modal
           title="Confirmation"

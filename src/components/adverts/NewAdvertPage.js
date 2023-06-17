@@ -3,7 +3,8 @@ import Button from '../shared/Button';
 import React, { useState, useEffect } from 'react';
 import './styles.css';
 import { useNavigate } from 'react-router-dom';
-import { createAdvert } from './service';
+import { createAdvert, getTags } from './service';
+import FileInput from '../shared/FileInput';
 
 const NewAdvertPage = (props) => {
   const [formData, setFormData] = useState({
@@ -11,9 +12,24 @@ const NewAdvertPage = (props) => {
     price: '',
     sale: '',
     tags: [],
+    photo: undefined,
   });
+  const [tags, setTags] = useState([]);
+
+  
+  useEffect(() => {
+    void(async () => {
+      try {
+        const response = await getTags();
+        setTags(response);
+      } catch (error) {
+        console.error('Error fetching tags:', error);
+      }
+    })();
+  }, []);
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -61,6 +77,13 @@ const NewAdvertPage = (props) => {
     }
   };
 
+  const handlePhotoChange = (photo) => {
+    setFormData({
+      ...formData,
+      photo,
+    });
+  };
+
   return (
     <Layout title="What do you need?" {...props}>
       <h1>New Advert Page</h1>
@@ -88,54 +111,36 @@ const NewAdvertPage = (props) => {
           <input type="text" name="price" onChange={handleChange} />
         </label>
         <br />
+        <br />
         <label>
           Tags:
-          <input
-            type="checkbox"
-            name="tags"
-            value="lifestyle"
-            checked={formData.tags.includes('lifestyle')}
-            onChange={handleChange}
-          />
-          <label>Lifestyle</label>
-          <br />
-          <input
-            type="checkbox"
-            name="tags"
-            value="mobile"
-            checked={formData.tags.includes('mobile')}
-            onChange={handleChange}
-          />
-          <label>Mobile</label>
-          <br />
-          <input
-            type="checkbox"
-            name="tags"
-            value="motor"
-            checked={formData.tags.includes('motor')}
-            onChange={handleChange}
-          />
-          <label>Motor</label>
-          <br />
-          <input
-            type="checkbox"
-            name="tags"
-            value="work"
-            checked={formData.tags.includes('work')}
-            onChange={handleChange}
-          />
-          <label>Work</label>
+          {tags.map((tag) => (
+            <React.Fragment key={tag}>
+              <input
+                type="checkbox"
+                name="tags"
+                value={tag}
+                checked={formData.tags.includes(tag)}
+                onChange={handleChange}
+              />
+              <label>{tag}</label>
+              <br />
+            </React.Fragment>
+          ))}
         </label>
+        <div>
+          <FileInput id="photo" onChange={handlePhotoChange} />
+        </div>
       </form>
       <Button
         type="submit"
         name="create-advert-button"
         className="create-advert-button"
         onClick={handleSubmit}
-        variant="secondary"
+        variant="primary"
         disabled={buttonDisabled}
       >
-        Crear
+        Create
       </Button>
       <Button
         type="button"
@@ -144,7 +149,7 @@ const NewAdvertPage = (props) => {
         variant="secondary"
         onClick={() => navigate('/')}
       >
-        Cancelar
+        Cancel
       </Button>
     </Layout>
   );

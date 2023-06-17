@@ -3,7 +3,7 @@ import ReactSlider from 'react-slider';
 // import 'react-slider/react-slider.css';
 import './styles.css';
 
-function PriceRangeSlider({ minPrice, maxPrice, setMinPrice, setMaxPrice }) {
+function PriceRangeSlider({ minPrice, maxPrice, setMinPrice, setMaxPrice, itemMaxPrice }) {
   const handlePriceChange = (values) => {
     setMinPrice(values[0]);
     setMaxPrice(values[1]);
@@ -17,7 +17,7 @@ function PriceRangeSlider({ minPrice, maxPrice, setMinPrice, setMaxPrice }) {
         trackClassName="price-range-slider-track"
         value={[minPrice, maxPrice]}
         min={0}
-        max={1000}
+        max={itemMaxPrice}
         step={50}
         onChange={handlePriceChange}
       />
