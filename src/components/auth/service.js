@@ -11,7 +11,7 @@ export const login = async (credentials, navigate, remember) => {
     if (remember) {
       storage.set('auth', accessToken);
     }
-    navigate('/');
+    return accessToken;
   } catch (error) {
     console.error(error);
     throw new Error('Wrong credentials');

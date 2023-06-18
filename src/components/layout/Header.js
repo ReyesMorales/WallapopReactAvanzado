@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { logout } from '../auth/service';
 import Button from '../shared/Button';
@@ -9,8 +10,10 @@ const HeaderContainer = styled.header`
   /* Estilos del encabezado */
 `;
 
-const Header = ({ isLogged, onLogout }) => {
+const Header = () => {
   const [showModal, setShowModal] = useState(false);
+  const isLoggedIn = useSelector((state) => state.session.isLoggedIn);
+  const dispatch = useDispatch();
 
   const handleLogoutClick = async () => {
     setShowModal(true);
@@ -18,7 +21,7 @@ const Header = ({ isLogged, onLogout }) => {
 
   const handleConfirmLogout = async () => {
     await logout();
-    onLogout();
+    dispatch({ type: 'LOGOUT' });
     setShowModal(false);
   };
 
@@ -29,7 +32,7 @@ const Header = ({ isLogged, onLogout }) => {
   return (
     <HeaderContainer>
       <nav>
-        {isLogged ? (
+        {isLoggedIn ? (
           <Button
             onClick={handleLogoutClick}
             variant="primary"

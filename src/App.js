@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from './store/store';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import AdvertsPage from './components/adverts/AdvertsPage';
 import LoginPage from './components/auth/LoginPage';
@@ -8,40 +10,25 @@ import { NotFoundPage } from './components/adverts/NotFound';
 import { useIsLogged } from './hooks';
 import { DetailedAdvert } from './components/adverts/DetailedAdvert';
 
-function App({ isInitiallyLogged }) {
-  const [isLogged, setIsLogged] = useState(isInitiallyLogged);
-  useIsLogged(isLogged);
+function App() {
+  return (
+    <Provider store={store}>
+      <InnerApp />
+    </Provider>
+  );
+}
 
-  const handleLogin = () => {
-    setIsLogged(true);
-  };
-
-  const handleLogout = () => {
-    setIsLogged(false);
-  };
+function InnerApp() {
+  const navigate = useNavigate();
+  useIsLogged();
 
   return (
     <Routes>
-      <Route
-        path="/login"
-        element={<LoginPage onLogin={handleLogin} />}
-      />
-      <Route
-        path="/adverts/new"
-        element={<NewAdvertPage onLogout={handleLogout} isLogged={isLogged} />}
-      />
-      <Route
-        path="/adverts"
-        element={<AdvertsPage onLogout={handleLogout} isLogged={isLogged} />}
-      />
-      <Route
-        path="/"
-        element={<AdvertsPage onLogout={handleLogout} isLogged={isLogged} />}
-      />
-      <Route
-        path="/adverts/:id"
-        element={<DetailedAdvert onLogout={handleLogout} isLogged={isLogged} />}
-      />
+      <Route path="/login" element={<LoginPage onLogin={() => navigate('/')} />} />
+      <Route path="/adverts/new" element={<NewAdvertPage />} />
+      <Route path="/adverts" element={<AdvertsPage />} />
+      <Route path="/" element={<AdvertsPage />} />
+      <Route path="/adverts/:id" element={<DetailedAdvert />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

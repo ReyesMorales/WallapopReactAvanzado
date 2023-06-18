@@ -1,5 +1,5 @@
-import './styles.css';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { getLatestAdverts } from './service';
 import { useNavigate } from 'react-router-dom';
 import Button from '../shared/Button';
@@ -7,28 +7,34 @@ import Layout from '../layout/Layout';
 import Advert from './Advert';
 import { FilterVentaCompra } from '../filters/FilterVentaCompra';
 import { PriceRangeSlider } from '../filters/FilterPrice';
+import { setAdverts } from '../../store/reducers/advertsReducer';
 
 const AdvertsPage = (props) => {
-  const [adverts, setAdverts] = useState([]);
   const [selectedOption, setSelectedOption] = useState('no-filtro');
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(undefined);
-
   const [itemMaxPrice, setItemMaxPrice] = useState(0);
 
-
   const navigate = useNavigate();
+  const isLoggedIn = useSelector((state) => state.session.isLoggedIn);
+  const adverts = useSelector((state) => state.adverts.adverts);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/login');
+      return;
+    }
+
     getLatestAdverts().then((adverts) => {
-      setAdverts(adverts);
+      dispatch(setAdverts(adverts));
 
       const maxPrice = Math.max(...adverts.map((advert) => advert.price));
       setItemMaxPrice(maxPrice);
       setMaxPrice(maxPrice);
     });
-  }, []);
-
+  }, [isLoggedIn, navigate, dispatch]);
 
   const navigateToNewAdvert = () => {
     navigate('adverts/new');
@@ -54,7 +60,6 @@ const AdvertsPage = (props) => {
               setMaxPrice={setMaxPrice}
               itemMaxPrice={itemMaxPrice}
             />
-
             <ul>
               {adverts
                 ?.filter((advert) => {
